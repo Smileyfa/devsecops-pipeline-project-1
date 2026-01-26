@@ -74,7 +74,7 @@ resource "aws_instance" "vulnerable_instance" {
   # BAD: Hardcoded credentials in user data
   user_data = <<-USERDATA
               #!/bin/bash
-              export DB_PASSWORD="hardcoded_password"
+              export DB_PASSWORD="$(aws secretsmanager get-secret-value ...)"
               echo "Setting up application..."
               USERDATA
 
