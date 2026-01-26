@@ -12,9 +12,9 @@ import yaml
 
 app = Flask(__name__)
 
-# Vulnerability 1: Hardcoded credentials (Secret Detection will find this)
-DATABASE_PASSWORD = "super_secret_password_123"
-API_KEY = "sk-1234567890abcdef"
+# GOOD: Load secrets from environment (or injected by your platform)
+DATABASE_PASSWORD = require_env("DATABASE_PASSWORD")
+API_KEY = require_env("API_KEY")
 
 # Vulnerability 2: SQL Injection
 def get_user(username):
